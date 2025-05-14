@@ -1,6 +1,4 @@
-
 package pkg21.view;
-
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

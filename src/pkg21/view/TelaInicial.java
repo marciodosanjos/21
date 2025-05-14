@@ -46,6 +46,8 @@ public class TelaInicial extends PanelBackground {
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
         add(label, gbc);
+        
+       
 
         // Configuração de GridBagConstraints para os botões
         JPanel painelBotoes = new JPanel();
@@ -56,6 +58,24 @@ public class TelaInicial extends PanelBackground {
         gbc.gridx = 0;
         gbc.gridy = 1;
         add(painelBotoes, gbc);
+        
+        JButton btnRank = new JButton("Rank");
+        btnRank.setBackground(Color.LIGHT_GRAY);
+        btnRank.setPreferredSize(new Dimension(200,50));
+        
+       
+        JPanel painelBtnRank = new JPanel();
+        painelBtnRank.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+        painelBtnRank.add(btnRank);
+        
+        btnRank.addActionListener(e -> {
+            frame.mostrarTela("Rank");
+            System.out.println("Tela de rank aberta");
+        } );
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        add(painelBtnRank, gbc);
         
         
         // 

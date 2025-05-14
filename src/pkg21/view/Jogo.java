@@ -1,5 +1,4 @@
 package pkg21.view;
-
 import javax.swing.*;
 import java.awt.*;
 
