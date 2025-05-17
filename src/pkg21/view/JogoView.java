@@ -1,11 +1,11 @@
 package pkg21.view;
 import javax.swing.*;
 import java.awt.*;
-import model.Carta;
+import model.Jogo;
 
-public class Jogo extends PanelBackground {
+public class JogoView extends PanelBackground {
 
-    public Jogo(Start frame) {
+    public JogoView(Start frame) {
         // Configura o layout principal como BoxLayout vertical
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -25,7 +25,7 @@ public class Jogo extends PanelBackground {
         panelCartasCompradas.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         //nova instancia de jogo criada
-        //Jogo jogo = new Jogo();
+        Jogo jogo = new Jogo();
         
         // Painel para o resultado
         JPanel resultado = new JPanel();
@@ -44,7 +44,7 @@ public class Jogo extends PanelBackground {
         btnComprarCarta.addActionListener(e -> {
             
             //comprando carta
-            //panelCartasCompradas.add(new CartaView(novaCarta.getPontos(), novaCarta.getNaipe()));
+            panelCartasCompradas.add(new CartaView(jogo.comprarCarta().getPontos(), jogo.comprarCarta().getNaipe()));
             
             // Repaint o painel para mostrar a nova carta
             panelCartasCompradas.revalidate();

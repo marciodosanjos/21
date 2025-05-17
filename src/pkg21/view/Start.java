@@ -19,7 +19,7 @@ public class Start extends JFrame {
        //todas as telas do jogo aqui
         container.add(new TelaInicial(this), "telaInicial");
         container.add(new CriarConta(this), "criarConta");
-        container.add(new Jogo(this), "jogo");
+        container.add(new JogoView(this), "jogo");
         container.add(new Rank(this), "Rank");
 
         //...
