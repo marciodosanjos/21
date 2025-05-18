@@ -5,8 +5,8 @@ public class Jogador extends Pessoa {
     
     private int pontos;
     
-    public Jogador(String nome, String sobrenome, String email, String senha, int pontos) {
-        super(nome, sobrenome, email, senha);
+    public Jogador(String nome, String email, String senha, int pontos) {
+        super(nome, email, senha);
         this.pontos = pontos;
     }
 

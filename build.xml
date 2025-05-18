@@ -70,4 +70,24 @@
     nbproject/build-impl.xml file. 
 
     -->
+
+  <!-- Adiciona a pasta lib onde está o json-20240303.jar -->
+    <property name="lib.dir" value="lib"/>
+
+    <!-- Adiciona os JARs da lib ao classpath -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- Ajuste para incluir o .jar no classpath durante a execução -->
+    <target name="-post-init">
+        <property name="run.classpath" value="${run.classpath}:${lib.dir}/json-20240303.jar"/>
+    </target>
+
+    <!-- (Opcional) Confirmação visual após a compilação -->
+    <target name="-post-compile">
+        <echo message="Compilação concluída com json.jar no classpath."/>
+    </target>
 </project>

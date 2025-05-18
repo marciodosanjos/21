@@ -22,8 +22,8 @@ public class Rank extends PanelBackground {
         setLayout(new GridBagLayout());
 
         ArrayList<Jogador> jogadores = new ArrayList<>();
-        jogadores.add(new Jogador("Marcio", "dos Anjos", "ma@gmail", "1232", 5));
-        jogadores.add(new Jogador("Marlon", "dos Anjos", "ma@gmail", "1232", 4));
+        //jogadores.add(new Jogador("Marcio", "dos Anjos", "ma@gmail", "1232", 5));
+        //jogadores.add(new Jogador("Marlon", "dos Anjos", "ma@gmail", "1232", 4));
 
         // Ordena por pontuação (decrescente)
         jogadores.sort((a, b) -> Integer.compare(b.getPontos(), a.getPontos()));
