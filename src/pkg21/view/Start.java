@@ -9,9 +9,8 @@ public class Start extends JFrame {
     public Start() {
         super("Tela inicial");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 500);
+        setSize(1000, 700);
         setLocationRelativeTo(null);
-        
         
         cardLayout = new CardLayout();
         container = new JPanel(cardLayout);
@@ -22,7 +21,6 @@ public class Start extends JFrame {
         container.add(new JogoView(this), "jogo");
         container.add(new Rank(this), "Rank");
 
-        //...
 
         //mostra a tela
         setContentPane(container);

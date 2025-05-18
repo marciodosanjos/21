@@ -1,9 +1,12 @@
 package pkg21.view;
 import javax.swing.*;
 import java.awt.*;
+import model.Carta;
 import model.Jogo;
 
 public class JogoView extends PanelBackground {
+    private JLabel labelPontos;
+    private JLabel labelEncerrado;
 
     public JogoView(Start frame) {
         // Configura o layout principal como BoxLayout vertical
@@ -32,7 +35,19 @@ public class JogoView extends PanelBackground {
         resultado.setOpaque(false);
         resultado.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-
+        labelEncerrado = new JLabel("Jogo encerrado");
+        labelEncerrado.setFont(new Font("Arial", Font.PLAIN, 24));  
+        labelEncerrado.setHorizontalAlignment(SwingConstants.CENTER);  
+        labelEncerrado.setForeground(Color.WHITE);
+        
+        int pontuacao = jogo.getPontuacao();
+        labelPontos = new JLabel(String.valueOf(pontuacao));
+        labelPontos.setFont(new Font("Arial", Font.PLAIN, 24));  
+        labelPontos.setHorizontalAlignment(SwingConstants.CENTER);  
+        labelPontos.setForeground(Color.WHITE);
+        
+        resultado.add(labelPontos);
+        
         // Painel para a navegação
         JPanel navegacao = new JPanel();
         navegacao.setOpaque(false);
@@ -43,8 +58,26 @@ public class JogoView extends PanelBackground {
 
         btnComprarCarta.addActionListener(e -> {
             
-            //comprando carta
-            panelCartasCompradas.add(new CartaView(jogo.comprarCarta().getPontos(), jogo.comprarCarta().getNaipe()));
+            //comprar carta
+            Carta novaCarta = jogo.comprarCarta();
+            panelCartasCompradas.add(new CartaView(novaCarta.getValor(), novaCarta.getNaipe(), novaCarta.getFace()));
+
+            // Atualizar pontuação
+            int novaPontuacao = jogo.getPontuacao();
+            labelPontos.setText(String.valueOf(novaPontuacao));
+            
+             // Verificar se o jogo foi encerrado
+                boolean encerrado = jogo.encerrarJogo();
+                if (encerrado) {
+                    // Substituir label de pontuação pelo de encerrado
+                    resultado.remove(labelPontos);
+                    resultado.add(labelEncerrado);
+                    resultado.revalidate();
+                    resultado.repaint();
+
+                    // Desativa o botão de comprar
+                    btnComprarCarta.setEnabled(false);
+                }
             
             // Repaint o painel para mostrar a nova carta
             panelCartasCompradas.revalidate();
@@ -56,8 +89,6 @@ public class JogoView extends PanelBackground {
         btnEncerrarJogo.setPreferredSize(new Dimension(200,50));
         navegacao.add(btnComprarCarta);
         navegacao.add(btnEncerrarJogo);
-        
-
 
         // Adiciona os painéis ao painel principal
         add(panelCartasViradas);

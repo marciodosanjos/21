@@ -5,7 +5,6 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import model.Carta;
 import model.CartaAs;
-import model.CartaFace;
 
 public class CartaView extends JLabel {
     
@@ -18,6 +17,7 @@ public class CartaView extends JLabel {
     if(valor==1) {
      CartaAs cartaAs = new CartaAs(valor, naipe);
      ImageIcon iconeOriginal = new ImageIcon(getClass().getResource(cartaAs.getImagemPath()));
+
      if (iconeOriginal.getImage() != null) {
             Image imagemRedimensionada = iconeOriginal.getImage().getScaledInstance(50, 80, Image.SCALE_SMOOTH);
             setIcon(new ImageIcon(imagemRedimensionada));
@@ -39,11 +39,11 @@ public class CartaView extends JLabel {
 
     }
     
-    if (valor > 10 && extras.length > 0) {
+    if (valor >= 10 && extras.length > 0) {
        
        String face = extras[0];
-       CartaFace cartaFace = new CartaFace(valor, naipe, face);
-
+       Carta cartaFace = new Carta(valor, naipe, face);
+      
        ImageIcon iconeOriginal = new ImageIcon(getClass().getResource(cartaFace.getImagemPath()));
        if (iconeOriginal.getImage() != null) {
             Image imagemRedimensionada = iconeOriginal.getImage().getScaledInstance(50, 80, Image.SCALE_SMOOTH);
