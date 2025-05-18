@@ -73,9 +73,28 @@ public class TelaInicial extends PanelBackground {
             System.out.println("Tela de rank aberta");
         } );
         
+       
         gbc.gridx = 0;
         gbc.gridy = 2;
         add(painelBtnRank, gbc);
+        
+        JPanel painelLogin = new JPanel();
+        painelLogin.setLayout(new FlowLayout(FlowLayout.CENTER)); 
+        
+        JButton btnLogin = new JButton("Login");
+        btnLogin.setBackground(Color.LIGHT_GRAY);
+        btnLogin.setPreferredSize(new Dimension(200,50));
+        
+        painelLogin.add(btnLogin);
+        
+        btnLogin.addActionListener(e -> {
+            frame.mostrarTela("Login");
+            System.out.println("Tela de login aberta");
+        } );
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        add(painelLogin, gbc);
         
         
         // 

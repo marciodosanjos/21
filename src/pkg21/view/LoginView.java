@@ -1,12 +1,12 @@
 package pkg21.view;
 
-import control.CriarUsuario;
+import control.LoginController;
 import java.awt.*;
 import javax.swing.*;
 
-public class CriarConta extends PanelBackground {
+public class LoginView extends PanelBackground {
 
-    public CriarConta(Start frame) {
+    public LoginView(Start frame) {
         setLayout(new GridBagLayout());
 
         JPanel painelRegistro = new JPanel();
@@ -14,12 +14,8 @@ public class CriarConta extends PanelBackground {
         painelRegistro.setOpaque(false);
 
         // Campos
-        JTextField nomeField = new JTextField(15);
         JTextField emailField = new JTextField(15);
         JPasswordField senhaField = new JPasswordField(15);
-
-        painelRegistro.add(new JLabel("Nome completo:"));
-        painelRegistro.add(nomeField);
 
         painelRegistro.add(new JLabel("E-mail:"));
         painelRegistro.add(emailField);
@@ -28,7 +24,7 @@ public class CriarConta extends PanelBackground {
         painelRegistro.add(senhaField);
 
         // Botões
-        JButton btnEnviar = new JButton("Enviar");
+        JButton btnEnviar = new JButton("Entrar");
         JButton btnVoltar = new JButton("Voltar");
 
         JPanel botoesPanel = new JPanel(new FlowLayout());
@@ -49,26 +45,22 @@ public class CriarConta extends PanelBackground {
             }
         }
         
-         //criar usuario
-         btnEnviar.addActionListener(e-> {
-             
-             String nome = nomeField.getText();
+        btnEnviar.addActionListener(e-> {
+            
              String email = emailField.getText();
              String senha = String.valueOf(senhaField.getPassword());
              
-             if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+             if(email.isEmpty() || senha.isEmpty()) {
               JOptionPane.showMessageDialog(null, "Insira as informacoes necessárias", "Erro", JOptionPane.ERROR_MESSAGE);
-              return;
-
              }
              
-             try {
+              try {
              
-                 boolean sucesso = CriarUsuario.criarUsuario(nome, email, senha,0);
+                 boolean sucesso = LoginController.login( email, senha);
                  
                  if(sucesso) {
-                    JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    frame.mostrarTela("Login");
+                    JOptionPane.showMessageDialog(null, "Usuário logado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    frame.mostrarTela("jogo");
 
                  }
              
@@ -78,10 +70,11 @@ public class CriarConta extends PanelBackground {
 
 
              }
-             
-         
-         });
-         
+        
+        });
+        
+        
+        
          // Ação do botão Voltar
          btnVoltar.addActionListener(e -> frame.mostrarTela("telaInicial"));
     }

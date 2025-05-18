@@ -20,6 +20,7 @@ public class Start extends JFrame {
         container.add(new CriarConta(this), "criarConta");
         container.add(new JogoView(this), "jogo");
         container.add(new Rank(this), "Rank");
+        container.add(new LoginView(this), "Login");
 
 
         //mostra a tela

@@ -69,9 +69,9 @@ public class Baralho {
     public Carta getUltimaCarta() {
         int ultimaCartaIndex = this.size();
         Carta ultimaCarta = this.baralho.get(ultimaCartaIndex-posicao);
-        System.out.println("posicao antes " + posicao);
+        //System.out.println("posicao antes " + posicao);
         posicao++;
-        System.out.println("posicao depois " + posicao);
+        //System.out.println("posicao depois " + posicao);
 
         return ultimaCarta;
         
