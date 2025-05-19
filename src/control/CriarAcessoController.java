@@ -19,7 +19,7 @@ public class CriarAcessoController {
         }
     }
 
-    public static boolean criarUsuario(String email, String id) {
+    public static boolean criarAcesso(String email, String id) {
         JSONObject acessos =  mostrarAcessos();
         if (acessos.has(email)) {
             System.out.println("Acesso já existe.");
@@ -32,7 +32,7 @@ public class CriarAcessoController {
         novoAcesso.put("nome", novoLogin.getEmail());
         novoAcesso.put("id", novoLogin.getId());
         acessos.put(email, novoLogin);
-        salvarUsuarios(acessos);
+        salvarAcessos(acessos);
         System.out.println("Gravando em: " + new java.io.File(DB_PATH).getAbsolutePath());
         System.out.println("Acesso cadastrado com sucesso.");
         System.out.println(acessos);

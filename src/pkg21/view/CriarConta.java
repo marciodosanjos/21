@@ -73,7 +73,7 @@ public class CriarConta extends PanelBackground {
                  }
              
              } catch(Exception ex) {
-             System.err.println("Erro ao deletar usuário: " + ex.getMessage());
+             System.err.println("Erro ao criar usuário: " + ex.getMessage());
              JOptionPane.showMessageDialog(null, "Erro ao criar usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
 
 

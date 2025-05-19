@@ -51,12 +51,12 @@ public class LoginView extends PanelBackground {
              String senha = String.valueOf(senhaField.getPassword());
              
              if(email.isEmpty() || senha.isEmpty()) {
-              JOptionPane.showMessageDialog(null, "Insira as informacoes necessárias", "Erro", JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog(null, "Insira as informacoes necessárias para o login", "Erro", JOptionPane.ERROR_MESSAGE);
              }
              
               try {
              
-                 boolean sucesso = LoginController.login( email, senha);
+                 boolean sucesso = LoginController.login(email, senha);
                  
                  if(sucesso) {
                     JOptionPane.showMessageDialog(null, "Usuário logado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -65,8 +65,8 @@ public class LoginView extends PanelBackground {
                  }
              
              } catch(Exception ex) {
-             System.err.println("Erro ao deletar usuário: " + ex.getMessage());
-             JOptionPane.showMessageDialog(null, "Erro ao criar usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
+             System.err.println("Erro ao logar usuário: " + ex.getMessage());
+             JOptionPane.showMessageDialog(null, "Erro ao logar usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
 
 
              }

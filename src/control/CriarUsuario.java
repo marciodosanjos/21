@@ -26,7 +26,7 @@ public class CriarUsuario {
         }
         JSONObject novoUsuario = new JSONObject();
         
-        Jogador novoJgador = new Jogador("Marcio dos Anjos", "ma@gmail.com", "1234", 0);
+        Jogador novoJgador = new Jogador(nome, email, senha, 0);
         novoUsuario.put("nome", novoJgador.getNome());
         novoUsuario.put("email", novoJgador.getEmail());
         novoUsuario.put("senha", hashSenha(novoJgador.getSenha()));
