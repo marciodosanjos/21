@@ -1,6 +1,6 @@
 package pkg21.view;
 
-import control.CriarUsuario;
+import control.UsuarioController;
 import java.awt.*;
 import javax.swing.*;
 
@@ -48,41 +48,39 @@ public class CriarConta extends PanelBackground {
                 c.setForeground(Color.WHITE);
             }
         }
-        
-         //criar usuario
-         btnEnviar.addActionListener(e-> {
-             
-             String nome = nomeField.getText();
-             String email = emailField.getText();
-             String senha = String.valueOf(senhaField.getPassword());
-             
-             if(nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
-              JOptionPane.showMessageDialog(null, "Insira as informacoes necessárias", "Erro", JOptionPane.ERROR_MESSAGE);
-              return;
 
-             }
-             
-             try {
-             
-                 boolean sucesso = CriarUsuario.criarUsuario(nome, email, senha,0);
-                 
-                 if(sucesso) {
+        //criar usuario
+        btnEnviar.addActionListener(e -> {
+
+            String nome = nomeField.getText();
+            String email = emailField.getText();
+            String senha = String.valueOf(senhaField.getPassword());
+
+            if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Insira as informacoes necessárias", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+
+            }
+
+            try {
+
+                boolean sucesso = UsuarioController.criarUsuario(nome, email, senha, 0);
+
+                if (sucesso) {
                     JOptionPane.showMessageDialog(null, "Usuário criado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     frame.mostrarTela("Login");
 
-                 }
-             
-             } catch(Exception ex) {
-             System.err.println("Erro ao criar usuário: " + ex.getMessage());
-             JOptionPane.showMessageDialog(null, "Erro ao criar usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
 
+            } catch (Exception ex) {
+                System.err.println("Erro ao criar usuário: " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro ao criar usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
 
-             }
-             
-         
-         });
-         
-         // Ação do botão Voltar
-         btnVoltar.addActionListener(e -> frame.mostrarTela("telaInicial"));
+            }
+
+        });
+
+        // Ação do botão Voltar
+        btnVoltar.addActionListener(e -> frame.mostrarTela("telaInicial"));
     }
 }
