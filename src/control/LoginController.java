@@ -15,7 +15,7 @@ public class LoginController {
     private static final String ACCESS_PATH = "acessos.json";
 
     public static void salvarAcessos(JSONObject acessos) {
-        try (FileWriter file = new FileWriter(DB_PATH)) {
+        try (FileWriter file = new FileWriter(ACCESS_PATH)) {
             file.write(acessos.toString(4));
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,7 +36,7 @@ public class LoginController {
         novoAcesso.put("id", novoLogin.getId());
         acessos.put(email, novoLogin);
         salvarAcessos(acessos);
-        System.out.println("Gravando em: " + new java.io.File(DB_PATH).getAbsolutePath());
+        System.out.println("Gravando em: " + new java.io.File(ACCESS_PATH).getAbsolutePath());
         System.out.println("Acesso cadastrado com sucesso.");
         System.out.println(acessos);
 
@@ -82,7 +82,6 @@ public class LoginController {
                     String senhaHash = user.getString("senha");
                     Boolean senhaEIgual = senhaHash.equalsIgnoreCase(String.valueOf(senha));
 
-                    System.out.println(senhaHash);
 
                     if (senhaEIgual) {
                         System.out.println("Senha incorreta.");
@@ -108,11 +107,12 @@ public class LoginController {
 
     public static JSONObject mostrarAcessos() {
         try {
-            File file = new File(DB_PATH);
+            File file = new File(ACCESS_PATH);
             if (!file.exists()) {
-                Files.write(Paths.get(DB_PATH), "{}".getBytes());
+                System.out.println("Arquivo de acessos não encontrado. Criando um novo.");
+                Files.write(Paths.get(ACCESS_PATH), "{}".getBytes());
             }
-            String content = new String(Files.readAllBytes(Paths.get(DB_PATH)));
+            String content = new String(Files.readAllBytes(Paths.get(ACCESS_PATH)));
             return new JSONObject(content);
         } catch (IOException e) {
             e.printStackTrace();

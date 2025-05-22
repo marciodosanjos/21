@@ -1,9 +1,8 @@
 package pkg21.view;
 
+import control.LoginController;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TelaInicial extends PanelBackground {
 
@@ -30,8 +29,21 @@ public class TelaInicial extends PanelBackground {
 
         //abrir tela jogo
         btnJogar.addActionListener(e -> {
+            
+            Boolean logado = LoginController.estaLogado();
+            
+            if(!logado) {
+            System.out.println("Não estou logado");
+            JOptionPane.showMessageDialog(null, "Faça o login ou registre-se para jogar", "Erro", JOptionPane.ERROR_MESSAGE);
+            frame.mostrarTela("Login");
+            return;
+            }
+            
+            
             frame.mostrarTela("jogo");
-            System.out.println("Tela de jogo aberta");
+
+            
+          
         });
 
         // abrir tela de criar conta

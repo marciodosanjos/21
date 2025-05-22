@@ -23,7 +23,7 @@ public class LoginView extends PanelBackground {
         painelRegistro.add(new JLabel("Senha:"));
         painelRegistro.add(senhaField);
 
-        // Botões
+        // Botões de Login/Voltar
         JButton btnEnviar = new JButton("Entrar");
         JButton btnVoltar = new JButton("Voltar");
 
@@ -32,10 +32,27 @@ public class LoginView extends PanelBackground {
         botoesPanel.add(btnEnviar);
         botoesPanel.add(btnVoltar);
 
-        painelRegistro.add(Box.createRigidArea(new Dimension(0, 10)));
+        painelRegistro.add(Box.createRigidArea(new Dimension(0, 10))); // Espaçamento
         painelRegistro.add(botoesPanel);
 
-        // Centraliza o painelRegistro
+        // Botão de Cadastro
+        JPanel cadastroPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        cadastroPanel.setOpaque(false);
+        JButton btnCadastro = new JButton("Cadastrar");
+        btnCadastro.setOpaque(false);
+        btnCadastro.setContentAreaFilled(false);
+        btnCadastro.setBorderPainted(false);
+        btnCadastro.setForeground(Color.white);
+        btnCadastro.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnCadastro.addActionListener(e -> frame.mostrarTela("criarConta"));
+        cadastroPanel.add(btnCadastro);
+
+        // Adiciona o painel de cadastro ao painel de registro, logo abaixo dos botões
+        painelRegistro.add(Box.createRigidArea(new Dimension(0, 5))); // Espaçamento entre os grupos de botões
+        painelRegistro.add(cadastroPanel);
+
+
+        // Centraliza o painelRegistro (que agora contém tudo)
         add(painelRegistro, new GridBagConstraints());
 
         // Torna os labels brancos
@@ -46,36 +63,29 @@ public class LoginView extends PanelBackground {
         }
         
         btnEnviar.addActionListener(e-> {
+            String email = emailField.getText();
+            String senha = String.valueOf(senhaField.getPassword());
             
-             String email = emailField.getText();
-             String senha = String.valueOf(senhaField.getPassword());
-             
-             if(email.isEmpty() || senha.isEmpty()) {
-              JOptionPane.showMessageDialog(null, "Insira as informacoes necessárias para o login", "Erro", JOptionPane.ERROR_MESSAGE);
-             }
-             
-              try {
-             
-                 boolean sucesso = LoginController.login(email, senha);
-                 
-                 if(sucesso) {
+            if(email.isEmpty() || senha.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Insira as informacoes necessárias para o login", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            try {
+                boolean sucesso = LoginController.login(email, senha);
+                
+                if(sucesso) {
                     JOptionPane.showMessageDialog(null, "Usuário logado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    frame.setLogado(true);
                     frame.mostrarTela("jogo");
-
-                 }
-             
-             } catch(Exception ex) {
-             System.err.println("Erro ao logar usuário: " + ex.getMessage());
-             JOptionPane.showMessageDialog(null, "Erro ao logar usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
-
-
-             }
-        
+                }
+            
+            } catch(Exception ex) {
+                System.err.println("Erro ao logar usuário: " + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro ao logar usuário!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
         });
         
-        
-        
-         // Ação do botão Voltar
-         btnVoltar.addActionListener(e -> frame.mostrarTela("telaInicial"));
+        // Ação do botão Voltar
+        btnVoltar.addActionListener(e -> frame.mostrarTela("telaInicial"));
     }
 }

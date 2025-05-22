@@ -10,7 +10,7 @@ public class Start extends JFrame {
     JPanel container;
     JPanel topPanel; // Painel para o topo
     private boolean logado = false; // Exemplo de estado de login
-    // Não precisamos mais de 'currentRightPanel' se BarraLogadoView for o único componente à direita
+    private BarraLogadoView barraLogadoView; // <--- Mantenha uma referência à BarraLogadoView
 
     public Start() {
         super("Tela inicial");
@@ -23,7 +23,7 @@ public class Start extends JFrame {
         // --- Painel Superior ---
         topPanel = new JPanel();
         topPanel.setBackground(Color.LIGHT_GRAY); // Cinza claro
-        topPanel.setPreferredSize(new Dimension(getWidth(), 40)); // 100px de altura
+        topPanel.setPreferredSize(new Dimension(getWidth(), 40)); // 40px de altura
         topPanel.setLayout(new BorderLayout()); // Usa BorderLayout para o topPanel
 
         // Painel para o link "Ver Rank" (esquerda)
@@ -39,12 +39,12 @@ public class Start extends JFrame {
         rankPanel.add(rankLink);
         topPanel.add(rankPanel, BorderLayout.WEST);
 
-        //login
-        boolean estaLogado = LoginController.estaLogado();
-        this.setLogado(estaLogado);
-        JPanel painelLogin = new BarraLogadoView(this.logado);
-        painelLogin.setBackground(Color.LIGHT_GRAY);
-        topPanel.add(painelLogin, BorderLayout.EAST);
+        // Inicializa a barra de login com o estado atual DO CONTROLADOR
+        this.logado = LoginController.estaLogado(); 
+        // Cria a primeira instância da BarraLogadoView
+        barraLogadoView = new BarraLogadoView(this.logado, this);
+        barraLogadoView.setBackground(Color.LIGHT_GRAY);
+        topPanel.add(barraLogadoView, BorderLayout.EAST);
 
         // --- Container Principal (onde as telas do jogo aparecerão) ---
         cardLayout = new CardLayout();
@@ -54,7 +54,8 @@ public class Start extends JFrame {
         container.add(new CriarConta(this), "criarConta");
         container.add(new JogoView(this), "jogo");
         container.add(new Rank(this), "Rank");
-        container.add(new LoginView(this), "Login");
+        // Garanta que o LoginView também receba 'this' (a instância de Start)
+        container.add(new LoginView(this), "Login"); 
 
         add(topPanel, BorderLayout.NORTH);
         add(container, BorderLayout.CENTER);
@@ -63,6 +64,19 @@ public class Start extends JFrame {
 
     public void setLogado(boolean logado) {
         this.logado = logado;
+        atualizarBarraLogin(); 
+    }
+
+    private void atualizarBarraLogin() {
+        topPanel.remove(barraLogadoView);
+        
+        barraLogadoView = new BarraLogadoView(this.logado, this);
+        barraLogadoView.setBackground(Color.LIGHT_GRAY);
+        
+        topPanel.add(barraLogadoView, BorderLayout.EAST);
+        
+        topPanel.revalidate();
+        topPanel.repaint();
     }
 
     // controla a exibição da tela
