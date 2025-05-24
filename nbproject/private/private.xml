@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/marci/OneDrive/Currículos/NetBeansProjects/21/src/pkg21/view/CriarConta.java</file>
             <file>file:/C:/Users/marci/OneDrive/Currículos/NetBeansProjects/21/src/pkg21/view/BarraLogadoView.java</file>
             <file>file:/C:/Users/marci/OneDrive/Currículos/NetBeansProjects/21/src/pkg21/view/Start.java</file>
-            <file>file:/C:/Users/marci/OneDrive/Currículos/NetBeansProjects/21/src/pkg21/view/TelaInicial.java</file>
+            <file>file:/C:/Users/marci/OneDrive/Currículos/NetBeansProjects/21/src/model/Jogo.java</file>
+            <file>file:/C:/Users/marci/OneDrive/Currículos/NetBeansProjects/21/src/pkg21/view/JogoView.java</file>
         </group>
     </open-files>
 </project-private>
